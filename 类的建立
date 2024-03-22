@@ -1,0 +1,10 @@
+class person:
+    def __init__(self,name,age):
+      self.name= name
+      self.age=age
+    def mopp(self):
+       return f"my name is {self.name}and my age is {self.age}"
+    
+alice = person("Alice",15) #要隔开，同时理解函数的组成与分层
+print(alice.mopp())
+ 
