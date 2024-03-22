@@ -1,0 +1,12 @@
+def debug(func):
+    def wrapper(*args,**kwargs):
+        result = func(*args,**kwargs)
+        print(f"{func.__name__} return {result}")
+        return result
+    return wrapper
+
+@debug#类似一位贴心的导游，在程序运行时提供帮助
+def add(x,y):
+    return x+y
+
+add(1,2)
