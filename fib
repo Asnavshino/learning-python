@@ -1,0 +1,8 @@
+def fib(limit):
+    a,b=0,1
+    while a<limit:
+        yield a #类似厨师做菜，做好一道呈现一道
+        a,b = b ,a+b
+     
+for n in fib(100):
+    print(n)
