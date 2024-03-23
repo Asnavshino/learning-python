@@ -13,8 +13,8 @@ class Stack:
             return None
         return self.items.pop()
     
-    def peek(self):
-        if self.is_empty():
+    def peek(self):                           #没有明确给出先后定义，但是可以通过下方我的操作来解决定义问题
+        if self.is_empty():                   #其不改变栈的性质
             return None
         return self.items[-1]
     
