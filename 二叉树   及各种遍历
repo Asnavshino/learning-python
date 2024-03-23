@@ -1,0 +1,51 @@
+class TreeNode:
+    def __init__(self,value=0,left=None,right=None):
+        self.value=value
+        self.left=left
+        self.right=right
+        
+class BinaryTree:
+    def __init__(self,root=None):
+        self.root=root
+        
+    def insert(self,value):
+        if self.root is None:
+            self.root=TreeNode(value)
+        else:
+            self._insert_recursive(self.root,value)#帅哥，方法可不能做等号#而且这逼玩意命了名，在下一次调用中就成为了node
+            
+    def _insert_recursive(self,node,value):
+        if value<node.value:
+            if value is None:
+                node.left=TreeNode(value)
+            else:
+                self._insert_recursive(self.left,value)
+        else:
+            if value is None:
+                node.right=TreeNode(value)
+            else:
+                self._insert_recursive(self.right,value)
+                
+    def inorder_traversal(self):
+        return self._insert_recursive(self.root,[])
+    
+    def _inorder_recursive(self,node,values):
+        if node is not None:
+            self._inorder_recursive(self.left,values)#最后的最后，不行的结束
+            values.append(node.value)
+            self._inorder_recursive(self.right,values)
+        return values
+    
+tree= BinaryTree()
+tree.insert(3)
+tree.insert(4)
+tree.insert(5)
+tree.insert(6)
+tree.insert(7)
+tree.insert(8)
+tree.insert(9)
+tree.insert(10)
+
+
+
+
