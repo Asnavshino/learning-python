@@ -1,0 +1,23 @@
+import requests
+import json
+if __name__=="__main__":
+    url='https://movie.douban.com/typerank'
+    param={
+        'type': '24',
+        'interval_id': '100:90',
+        'action':'',
+        'start': '1',#从库中的第几部电影去取
+        'limit': '20'#一次取出的个数
+    }
+    headers = {
+        'User-Agent':'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36 Edg/122.0.0.0'
+    }
+    response = requests.get(url=url,params=param,headers=headers)
+
+    list_data = response.json()#等号隔开#层层
+
+    fp = open('./douban.json','w', encoding='utf-8')
+
+    json.dump(list_data ,fp= fp,ensure_ascii=False)
+
+    print('over!!!')#json格式化项目,上网查
