@@ -1,0 +1,23 @@
+import requests
+if __name__=="__main__":
+#设计动态（包括动态参数等）和UA伪装(请求载体反反爬虫策略)
+    #UA伪装
+    headers={
+        'User-Agent':'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36 Edg/122.0.0.0'
+    }
+    #指定URL
+    url='https://www.sogou.com/web?'#url编码特性——中文可能会变成乱码#query=av这一段就可以删掉了
+    #处理url携带的参数：封装到字典中
+    kw = input('enter a word')
+    param={
+        'query':kw
+    }
+    #发起请求
+    response=requests.get(url=url,params=param,headers=headers)#param作为一个参数被赋予
+    #获取数据响应
+    page_text=response.text
+    #持久储存数据
+    filename=kw+'.html'
+    with open(filename,'w',encoding='utf-8')as fp:
+        fp.write(page_text)
+    print(filename,'保存成功')
