@@ -1,0 +1,15 @@
+import requests
+if __name__=="__main__": #检验是否作为主程序运行
+    #S.1指定url
+    url = 'https://www.sogou.com/'
+    #S.2请求数据
+    #get方法会返回一个响应对象
+    response = requests.get(url=url)
+    #S.3返回一个响应对象text响应的是字符串形式的反应数据
+    page_text = response.text
+    print(page_text)
+    #S.4持久化存储数据
+    with open('./sogou.html','w',encoding='utf-8') as fp: #当前目录下的！！文件，非删即造，编码识别unicode
+    #fp徽章与with门
+         fp.write(page_text)
+    print('爬取数据结束')
