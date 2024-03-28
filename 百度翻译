@@ -1,0 +1,27 @@
+import requests
+import json
+if __name__ =="__main__":
+    #1.学会post处理&参数类型
+    post_url='https://fanyi.baidu.com/sug'#json是数据格式
+    #2.进行UA伪装
+    headers={
+        'User-Agent':'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36 Edg/122.0.0.0'
+    }
+    #3.封装一下——post请求操作处理
+    #设计一下动态
+    word=input('enter a word')
+    data={
+        'kw':word
+    }
+    #4.请求发送
+    response=requests.post(url=post_url,data=data,headers=headers)
+    #5.获取响应数据:json()方法返回的是obj(相当于是已经封装过了的)(如果确认响应的数据类型是json类型的，才使用json)
+    #看contant.type
+    dic_obj=response.json()
+    print(dic_obj)#在这一步其实就已经可以运行了
+    #6.持久化存储
+    filename=word+'.json'
+    fp = open(filename,'w',encoding='utf-8')
+    json.dump(dic_obj,fp=fp,ensure_ascii=False)#为了jump出来，不需要with关上？#中文不能用ASCII编码
+
+    print('over')
